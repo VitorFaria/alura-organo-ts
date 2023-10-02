@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Banner from './components/Banner';
-import Formulario from './components/Formulario';
+import Form from './components/Form';
 import Team from './components/Team';
+import { ICollaborator } from './shared/interfaces/ICollaborator';
 
 function App() {
 
@@ -43,17 +44,16 @@ function App() {
     }
   ]
 
-  const [collaborators, setCollaborators] = useState([])
+  const [collaborators, setCollaborators] = useState<ICollaborator[]>([])
 
-  const onNewRegisteredCollaborator = (collaborator) => {
-    debugger
+  const onNewRegisteredCollaborator = (collaborator: ICollaborator) => {
     setCollaborators([...collaborators, collaborator])
   }
 
   return (
     <div className="App">
       <Banner imageAddress='/imagens/banner.png' altText='O banner principal da página do Organo' />
-      <Formulario teams={teams.map(team => team.name)} onRegisteredCollaborator={collaborator => onNewRegisteredCollaborator(collaborator)}/>
+      <Form teams={teams.map(team => team.name)} onRegisteredCollaborator={collaborator => onNewRegisteredCollaborator(collaborator)}/>
 
       {teams.map(team => <Team 
         key={team.name} 

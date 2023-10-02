@@ -5,10 +5,10 @@ interface FieldTextProps {
     onAltered: (value: string) => void;
     label: string;
     value: string;
-    isRequired: boolean;
+    isRequired?: boolean;
 }
 
-const FieldText = ({placeholder, onAltered, label, value, isRequired}: FieldTextProps) => {
+const FieldText = ({placeholder, onAltered, label, value, isRequired = false}: FieldTextProps) => {
 
     const modifiedPlaceholder = `${placeholder}...` 
 

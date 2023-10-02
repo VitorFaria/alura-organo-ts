@@ -2,17 +2,23 @@ import { useState } from 'react'
 import Button from '../Button'
 import FieldText from '../FieldText'
 import SuspendedList from '../SuspendedList'
-import './Formulario.css'
+import './Form.css'
+import { ICollaborator } from '../../shared/interfaces/ICollaborator'
 
-const Formulario = (props) => {
+interface FormProps {
+    onRegisteredCollaborator: (collaborator: ICollaborator) => void,
+    teams: string[],
+}
+
+const FormElements = (props: FormProps) => {
 
     const [name, setName] = useState('')
     const [position, setPosition] = useState('')
     const [image, setImage] = useState('')
     const [team, setTeam] = useState('')
 
-    const onSave = (evento) => {
-        evento.preventDefault()
+    const onSave = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
         props.onRegisteredCollaborator({
             name,
             position,
@@ -26,7 +32,7 @@ const Formulario = (props) => {
     }
 
     return (
-        <section className="formulario">
+        <section className="form">
             <form onSubmit={onSave}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
                 <FieldText 
@@ -64,4 +70,4 @@ const Formulario = (props) => {
     )
 }
 
-export default Formulario
+export default FormElements
